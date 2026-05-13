@@ -1,6 +1,7 @@
 {
   "name": "siraj-ul-uloom",
   "version": "1.0.0",
+  "type": "module" ,
   "description": "Production-ready CMS website for Siraj-ul-Uloom Islamic Institute",
   "private": true,
   "homepage": "https://Haseeb-creator.github.io/sirajululoom",
