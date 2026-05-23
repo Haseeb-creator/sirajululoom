@@ -28,7 +28,7 @@ export function Navbar({ navigation, siteName = 'Siraj-ul-Uloom' }: NavbarProps)
           <div className="w-10 h-10 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-lg flex items-center justify-center transform group-hover:scale-110 transition-transform duration-200">
             <span className="text-white font-bold text-lg">🕌</span>
           </div>
-          <span className="font-black text-xl text-emerald-900 hidden sm:inline">{siteName}</span>
+          <span className="font-black text-lg sm:text-xl text-emerald-900">{siteName}</span>
         </Link>
 
         {/* Desktop Menu */}

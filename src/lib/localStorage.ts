@@ -37,15 +37,18 @@ const DEFAULT_DATA = {
       title: 'About Us',
       subtitle: 'Building Strong Islamic Foundation',
       content: {
-        description: 'We are dedicated to providing Islamic education and fostering a strong Muslim community.',
+        description: 'Siraj-ul-Uloom Islamic Institute is dedicated to providing comprehensive Islamic education while maintaining the highest standards of academic excellence. Since our establishment, we have been committed to nurturing young Muslims with strong Islamic values, character development, and intellectual growth. Our mission is to create an environment where students develop a deep connection with Islamic teachings and excel in both secular and religious knowledge.',
         image: '',
         highlights: [
-          'Expert Islamic Scholars',
-          'Qualified Modern Teachers',
-          'Safe Learning Environment',
-          'Modern Facilities',
-          'Daily Spiritual Guidance'
-        ]
+          'Quran Memorization & Tajweed Excellence',
+          'Experienced Islamic Scholars & Educators',
+          'Modern Facilities & Safe Campus',
+          'Character Development Programs',
+          'Community Engagement Initiatives',
+          'Certified & Accredited Curriculum'
+        ],
+        ctaText: 'Learn More About Our Mission',
+        ctaLink: '/about'
       },
       order: 1,
     },
@@ -56,22 +59,49 @@ const DEFAULT_DATA = {
       title: 'Our Programs',
       subtitle: 'Comprehensive Islamic Education for All Ages',
       content: {
-        description: 'We offer multiple programs designed for different age groups and learning objectives',
+        description: 'Siraj-ul-Uloom offers world-class Islamic education programs designed for every age group and learning level. All our programs are led by experienced instructors with proven track records in Islamic education.',
         programs: [
           {
             name: 'Hifz-e-Quran',
-            description: 'Complete Quran Memorization Program',
-            icon: '📖'
+            description: 'Complete Quran Memorization Program with Tajweed',
+            icon: '📖',
+            duration: '3-5 years',
+            details: [
+              'Expert Quranic teachers with certification',
+              'Daily structured memorization sessions',
+              'Proper Tajweed (recitation rules) instruction',
+              'Islamic studies integrated with Hifz',
+              'Certification of completion',
+              'One-on-one revision sessions'
+            ]
           },
           {
             name: 'Islamic School',
-            description: 'Classes 1-10 with Islamic Focus',
-            icon: '📚'
+            description: 'Full Curriculum Classes 1-10 with Islamic Focus',
+            icon: '📚',
+            duration: '10 years',
+            details: [
+              'Modern curriculum with Islamic values integration',
+              'Qualified teachers in all subjects',
+              'Regular assessments and progress tracking',
+              'Extracurricular Islamic activities',
+              'Character development programs',
+              'Safe and supportive learning environment'
+            ]
           },
           {
             name: 'Quranic Studies',
-            description: 'In-Depth Quranic Understanding',
-            icon: '✨'
+            description: 'In-Depth Understanding of the Quran',
+            icon: '✨',
+            duration: 'Flexible schedule',
+            details: [
+              'Tafsir (interpretation) of Quranic verses',
+              'Arabic language fundamentals',
+              'Quranic sciences and background',
+              'Weekly classes with flexible timing',
+              'All age groups and levels welcome',
+              'Discussion-based learning approach'
+            ]
           }
         ]
       },
@@ -82,13 +112,14 @@ const DEFAULT_DATA = {
       page_id: 'demo-home',
       type: 'stats',
       title: 'Our Impact',
-      subtitle: 'Making a Difference in Education',
+      subtitle: 'Making a Difference in Islamic Education',
       content: {
+        description: 'Siraj-ul-Uloom has been serving the community and creating positive impact for years.',
         stats: [
-          { number: '70+', label: 'Active Students' },
-          { number: '15+', label: 'Qualified Teachers' },
-          { number: '5+', label: 'Programs' },
-          { number: '2024', label: 'Year Founded' }
+          { number: '500+', label: 'Students Graduated' },
+          { number: '25+', label: 'Experienced Teachers' },
+          { number: '8+', label: 'Active Programs' },
+          { number: '15+', label: 'Years of Excellence' }
         ]
       },
       order: 3,
@@ -111,7 +142,7 @@ const DEFAULT_DATA = {
       title: 'Photo Gallery',
       subtitle: 'Capturing Moments of Learning and Growth',
       content: {
-        description: 'Visual moments from our institute activities and events'
+        description: 'Visual moments from our institute activities, events, and daily learning experiences that showcase our vibrant community'
       },
       order: 5,
     },
@@ -120,9 +151,9 @@ const DEFAULT_DATA = {
       page_id: 'demo-home',
       type: 'donation',
       title: 'Support Our Mission',
-      subtitle: 'Your Donation Makes a Difference',
+      subtitle: 'Your Contribution Empowers Future Generations',
       content: {
-        description: 'Help us continue providing quality Islamic education to more students'
+        description: 'Your generous donation helps us provide quality Islamic education, maintain modern facilities, and support students who need financial assistance. Every contribution, big or small, makes a meaningful difference.'
       },
       order: 6,
     },
@@ -133,7 +164,7 @@ const DEFAULT_DATA = {
       title: 'Get In Touch',
       subtitle: 'We Would Love to Hear From You',
       content: {
-        description: 'Have any questions? Contact us today!'
+        description: 'Have questions about our programs, admissions, or anything else? Contact us today! Our team is ready to help you find the right Islamic education program for your child.'
       },
       order: 7,
     },
@@ -162,18 +193,51 @@ const DEFAULT_DATA = {
     { id: '6', title: 'Event Photo 6', url: '', category: 'gallery', alt_text: 'Iftaar Event' },
   ],
   donations: [
-    { id: '1', name: 'Supporter', amount: 500, description: 'Monthly supporter' },
-    { id: '2', name: 'Benefactor', amount: 1000, description: 'Annual benefactor' },
-    { id: '3', name: 'Patron', amount: 5000, description: 'Major patron' },
-    { id: '4', name: 'Founder', amount: 2500, description: 'Founding member' },
-    { id: '5', name: 'Custom', amount: 0, description: 'Custom donation' },
+    { id: '1', name: 'Basic Sponsor', amount: 500, description: 'Support a student for 1 month' },
+    { id: '2', name: 'Standard Supporter', amount: 1000, description: 'Monthly support for our programs' },
+    { id: '3', name: 'Platinum Patron', amount: 5000, description: 'Annual comprehensive support' },
+    { id: '4', name: 'Founding Member', amount: 2500, description: 'Become part of our leadership' },
+    { id: '5', name: 'Scholarship Fund', amount: 3000, description: 'Support underprivileged students' },
+    { id: '6', name: 'Building Fund', amount: 10000, description: 'Help expand our facilities' },
+    { id: '7', name: 'Custom Amount', amount: 0, description: 'Choose your own donation amount' },
   ],
   testimonials: [
-    { id: '1', name: 'Ahmed Khan', content: 'Excellent Islamic education for my children.', rating: 5 },
-    { id: '2', name: 'Fatima Hassan', content: 'The teachers are knowledgeable and caring.', rating: 5 },
-    { id: '3', name: 'Ibrahim Ali', content: 'Great community and supportive environment.', rating: 5 },
-    { id: '4', name: 'Aisha Omar', content: 'Highly recommended for Islamic learning.', rating: 5 },
-    { id: '5', name: 'Muhammad Ahmed', content: 'Best Islamic school in the area.', rating: 5 },
+    { 
+      id: '1', 
+      name: 'Ahmed Khan', 
+      message: 'Siraj-ul-Uloom has been a blessing for our family. My son has memorized 15 Paras in 2 years and the Tajweed instruction is exceptional. The teachers are patient and dedicated.', 
+      rating: 5 
+    },
+    { 
+      id: '2', 
+      name: 'Fatima Hassan', 
+      message: 'I was impressed by the holistic approach to Islamic education. My daughter not only learns Quranic studies but also gains strong Islamic values and character development.', 
+      rating: 5 
+    },
+    { 
+      id: '3', 
+      name: 'Ibrahim Ali', 
+      message: 'The community here is incredibly supportive and welcoming. It feels like a second family. The facilities are modern and the curriculum is comprehensive.', 
+      rating: 5 
+    },
+    { 
+      id: '4', 
+      name: 'Aisha Omar', 
+      message: 'After 2 years at Siraj-ul-Uloom, my child has transformed. The confidence, Islamic knowledge, and discipline acquired here are invaluable.', 
+      rating: 5 
+    },
+    { 
+      id: '5', 
+      name: 'Muhammad Ahmed', 
+      message: 'Best decision we made for our children\'s Islamic education. The balance between traditional Islamic teachings and modern education is perfect.', 
+      rating: 5 
+    },
+    { 
+      id: '6', 
+      name: 'Zainab Ali', 
+      message: 'The Hifz program is professionally managed. My daughter memorized the entire Quran with proper Tajweed. The dedication of the instructors is remarkable.', 
+      rating: 5 
+    },
   ],
 }
 

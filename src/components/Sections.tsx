@@ -7,39 +7,37 @@ interface HeroSectionProps {
 
 export function HeroSection({ data }: HeroSectionProps) {
   const content = (data.content || {}) as any
+  const defaultBackgroundImage = 'https://lh3.googleusercontent.com/p/AF1QipNuvCb5t2tt8eitGA4MHmk1j6sLomUs_FI8bTsq=s1360-w1360-h1020-rw'
+  const heroBackground = content.backgroundImage || defaultBackgroundImage
 
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-      {/* Animated Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-islamic opacity-90" />
-      
+      {/* Landing page background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url('${heroBackground}')` }}
+      />
+      <div className="absolute inset-0 bg-black/10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/90" />
+
       {/* Floating Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-10 left-10 w-40 h-40 bg-white opacity-5 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-20 right-20 w-60 h-60 bg-yellow-300 opacity-5 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}} />
+        <div className="absolute bottom-20 right-20 w-60 h-60 bg-yellow-300 opacity-5 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
       </div>
 
-      {content.backgroundImage && (
-        <Image
-          src={content.backgroundImage}
-          alt={content.backgroundAlt || 'Hero background'}
-          fill
-          className="absolute inset-0 object-cover opacity-10"
-        />
-      )}
-
       <div className="container-custom relative z-10 text-center text-white py-20">
-        <h1 className="text-5xl md:text-7xl font-black mb-6 animate-slide-up leading-tight">
+        <h1 className="text-5xl md:text-7xl font-black mb-6 animate-slide-up leading-tight drop-shadow-[0_35px_35px_rgba(0,0,0,0.6)]">
           {data.title || content.title}
         </h1>
-        <p className="text-xl md:text-2xl mb-10 opacity-95 animate-slide-up max-w-3xl mx-auto leading-relaxed" style={{animationDelay: '0.2s'}}>
+        <p className="text-xl md:text-2xl mb-10 opacity-95 animate-slide-up max-w-3xl mx-auto leading-relaxed text-slate-100 drop-shadow-[0_25px_25px_rgba(0,0,0,0.5)]" style={{ animationDelay: '0.2s' }}>
           {data.subtitle || content.subtitle}
         </p>
         {content.ctaText && content.ctaLink && (
           <a
             href={content.ctaLink}
             className="btn-primary inline-block animate-scale-in"
-            style={{animationDelay: '0.4s'}}
+            style={{ animationDelay: '0.4s' }}
           >
             {content.ctaText}
           </a>
@@ -57,38 +55,62 @@ export function AboutSection({ data }: AboutSectionProps) {
   const content = (data.content || {}) as any
 
   return (
-    <section className="section-padding bg-white">
+    <section className="section-padding bg-slate-50">
       <div className="container-custom">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+        <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] items-center">
           {content.image && (
-            <div className="relative h-96 md:h-[500px] animate-slide-left">
-              <div className="absolute -inset-4 bg-gradient-to-br from-emerald-200 to-teal-200 rounded-2xl opacity-30 blur-lg" />
+            <div className="relative h-96 md:h-[560px] rounded-[2rem] overflow-hidden shadow-2xl shadow-slate-200/30 border border-slate-200/80 bg-white animate-slide-left">
+              <div className="absolute inset-0 bg-gradient-to-br from-white/70 via-transparent to-white/10" />
               <Image
                 src={content.image}
                 alt={content.imageAlt || 'About image'}
                 fill
-                className="object-cover rounded-2xl shadow-xl relative"
+                className="object-cover"
               />
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-white/90 to-transparent">
+                <p className="text-sm text-slate-500 uppercase tracking-[0.25em] font-semibold">About Us</p>
+                <h3 className="mt-3 text-3xl font-bold text-slate-950">{data.title}</h3>
+              </div>
             </div>
           )}
 
           <div className="animate-slide-right">
-            <h2 className="heading-2xl">{data.title}</h2>
-            <p className="text-lg text-muted mb-6 leading-relaxed">
+            <div className="inline-flex items-center gap-3 mb-6">
+              <span className="inline-block h-1.5 w-16 rounded-full bg-gradient-to-r from-emerald-500 to-teal-400" />
+              <span className="text-sm uppercase tracking-[0.25em] text-slate-500">Who we are</span>
+            </div>
+
+            <h2 className="heading-2xl mb-6 text-slate-950">{data.title}</h2>
+            <p className="text-lg text-slate-700 mb-8 leading-relaxed max-w-3xl">
               {content.description}
             </p>
 
             {content.highlights && Array.isArray(content.highlights) && (
-              <ul className="space-y-4">
+              <div className="grid gap-4 sm:grid-cols-2">
                 {content.highlights.map((highlight: string, idx: number) => (
-                  <li key={idx} className="flex items-start gap-3 group">
-                    <div className="w-6 h-6 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 flex items-center justify-center flex-shrink-0 mt-1 group-hover:scale-110 transition-transform">
-                      <span className="text-white text-sm font-bold">✓</span>
+                  <div
+                    key={idx}
+                    className="rounded-3xl border border-slate-200/80 bg-white/90 p-5 shadow-sm shadow-slate-900/5 transition hover:-translate-y-1 hover:shadow-xl"
+                  >
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-600 text-white shadow-md shadow-emerald-600/20">
+                        ✓
+                      </div>
+                      <p className="text-sm font-semibold text-slate-900">Feature</p>
                     </div>
-                    <span className="text-slate-700 font-medium group-hover:text-emerald-600 transition-colors">{highlight}</span>
-                  </li>
+                    <p className="text-slate-600 leading-relaxed">{highlight}</p>
+                  </div>
                 ))}
-              </ul>
+              </div>
+            )}
+
+            {content.ctaText && content.ctaLink && (
+              <a
+                href={content.ctaLink}
+                className="mt-10 inline-flex rounded-full bg-emerald-600 px-8 py-3 text-base font-semibold text-white shadow-lg shadow-emerald-600/20 transition hover:bg-emerald-700"
+              >
+                {content.ctaText}
+              </a>
             )}
           </div>
         </div>
@@ -104,6 +126,9 @@ interface ProgramsSectionProps {
 export function ProgramsSection({ data }: ProgramsSectionProps) {
   const content = (data.content || {}) as any
 
+  // Helper to create URL-safe slugs
+  const createSlug = (name: string) => name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '')
+
   return (
     <section className="section-padding bg-slate-50">
       <div className="container-custom">
@@ -115,34 +140,43 @@ export function ProgramsSection({ data }: ProgramsSectionProps) {
         </div>
 
         {content.programs && Array.isArray(content.programs) && (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-8 max-w-7xl mx-auto">
-            {content.programs.map((program: any, idx: number) => (
-              <div
-                key={idx}
-                className="card card-hover group"
-                style={{animation: `slideInUp 0.6s ease-out ${idx * 0.1}s both`}}
-              >
-                {program.icon && (
-                  <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300 inline-block">
-                    {program.icon}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {content.programs.map((program: any, idx: number) => {
+              const slug = createSlug(program.name)
+              return (
+                <a
+                  key={idx}
+                  href={`/programs#${slug}`}
+                  className="h-full rounded-2xl border border-slate-200/80 bg-white p-8 shadow-lg shadow-slate-900/5 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-emerald-500/10 group cursor-pointer block"
+                  style={{animation: `slideInUp 0.6s ease-out ${idx * 0.1}s both`}}
+                >
+                  {program.icon && (
+                    <div className="text-6xl mb-5 group-hover:scale-110 transition-transform duration-300 inline-block">
+                      {program.icon}
+                    </div>
+                  )}
+                  <h3 className="text-2xl font-bold text-emerald-900 mb-3 group-hover:text-emerald-700 transition-colors">
+                    {program.name}
+                  </h3>
+                  <p className="text-slate-600 mb-6 leading-relaxed text-base">
+                    {program.description}
+                  </p>
+                  {program.details && Array.isArray(program.details) && (
+                    <ul className="space-y-3 text-sm">
+                      {program.details.map((detail: string, didx: number) => (
+                        <li key={didx} className="flex items-start gap-3 text-slate-700">
+                          <span className="text-emerald-600 font-bold flex-shrink-0 pt-0.5">→</span>
+                          <span className="leading-relaxed">{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  <div className="mt-6 pt-6 border-t border-slate-200 text-emerald-600 font-semibold text-sm group-hover:text-emerald-700 transition-colors">
+                    Learn More →
                   </div>
-                )}
-                <h3 className="text-2xl font-bold text-emerald-900 mb-3">
-                  {program.name}
-                </h3>
-                <p className="text-slate-600 mb-4">{program.description}</p>
-                {program.details && (
-                  <ul className="space-y-2 text-sm">
-                    {program.details.map((detail: string, didx: number) => (
-                      <li key={didx} className="flex items-start gap-2 text-slate-600">
-                        <span className="text-emerald-600 font-bold flex-shrink-0">→</span>
-                        <span>{detail}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            ))}
+                </a>
+              )
+            })}
           </div>
         )}
       </div>
@@ -200,34 +234,43 @@ export function TestimonialsSection({ data, testimonials }: TestimonialsSectionP
   return (
     <section className="section-padding bg-white">
       <div className="container-custom">
-        <div className="text-center mb-16 animate-slide-down">
+        <div className="text-center mb-20 animate-slide-down">
           <h2 className="heading-2xl">{data.title}</h2>
-          <p className="text-lg text-muted max-w-2xl mx-auto">
+          <p className="text-lg text-muted max-w-3xl mx-auto">
             {data.subtitle}
           </p>
         </div>
 
         {testimonials && testimonials.length > 0 && (
-          <div className="grid md:grid-cols-3 gap-8 px-4 md:px-8 max-w-6xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {testimonials.map((testimonial, idx) => (
               <div 
                 key={idx} 
-                className="card card-hover"
+                className="h-full rounded-2xl border border-slate-200/80 bg-gradient-to-br from-white to-slate-50/50 p-8 shadow-lg shadow-slate-900/5 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-emerald-500/10"
                 style={{animation: `slideInUp 0.6s ease-out ${idx * 0.1}s both`}}
               >
-                <div className="flex gap-1 mb-4 text-yellow-400">
+                <div className="flex gap-1 mb-6 text-yellow-400">
                   {[...Array(testimonial.rating || 5)].map((_, i) => (
-                    <span key={i} className="text-xl">★</span>
+                    <span key={i} className="text-2xl">★</span>
                   ))}
                 </div>
-                <p className="text-slate-700 mb-6 italic text-lg leading-relaxed">
+                <p className="text-slate-700 mb-8 italic text-base leading-relaxed flex-grow">
                   "{testimonial.message}"
                 </p>
-                <div className="pt-4 border-t border-slate-200">
-                  <p className="font-bold text-emerald-900">— {testimonial.name}</p>
+                <div className="pt-6 border-t border-slate-200/60 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+                    {testimonial.name.charAt(0).toUpperCase()}
+                  </div>
+                  <p className="font-bold text-slate-900 text-sm">{testimonial.name}</p>
                 </div>
               </div>
             ))}
+          </div>
+        )}
+
+        {(!testimonials || testimonials.length === 0) && (
+          <div className="text-center py-12">
+            <p className="text-slate-500 text-lg">No testimonials available yet.</p>
           </div>
         )}
       </div>
