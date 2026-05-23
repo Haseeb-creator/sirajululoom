@@ -42,12 +42,22 @@ jobs:
         NEXT_PUBLIC_BASE_PATH: /sirajululoom
       run: npm run build
 
+    - name: Verify Build Output
+      run: |
+        echo "Build output contents:"
+        ls -la ./out/ | head -20
+        echo "Total files in out:"
+        find ./out -type f | wc -l
+
     - name: Upload Artifact
       uses: actions/upload-pages-artifact@v4
       with:
         path: './out'
+        retention-days: 1
 
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
 
